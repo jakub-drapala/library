@@ -1,8 +1,6 @@
 package com.drapala.library.entity;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +17,28 @@ public class Book {
 
 
     @Column/*(nullable = false)*/
-    String name;
+    private String authorsFirstName;
 
-    public Book(String name) {
-        this.name = name;
+    @Column
+    private String authorsLastName;
+
+    @Column
+    private String title;
+
+    @Column
+    private int publicationsYear;
+
+    @Column
+    private double price;
+
+
+
+    public Book(String authorsFirstName, String authorsLastName, String title, int publicationsYear, double price) {
+        this.authorsFirstName = authorsFirstName;
+        this.authorsLastName = authorsLastName;
+        this.title = title;
+        this.publicationsYear = publicationsYear;
+        this.price = price;
     }
 
     protected Book() {

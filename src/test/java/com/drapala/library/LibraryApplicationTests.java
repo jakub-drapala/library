@@ -34,7 +34,7 @@ public class LibraryApplicationTests {
 	@Test
 	public void getPerId() {
 
-		Book b = new Book("Pan Tadeusz");
+		Book b = new Book("Adam", "Mickiewicz", "Pan Tadeusz", 2014, 24.50);
 
 		repository.addBook(b);
 

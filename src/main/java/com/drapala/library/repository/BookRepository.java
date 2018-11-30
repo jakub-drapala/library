@@ -38,7 +38,7 @@ public class BookRepository {
 
     public Book editBook(Long id, Book book) {
         Book beforeUpdating = findBookById(id);
-        beforeUpdating.setName(book.getName());
+        beforeUpdating.setAuthorsFirstName(book.getAuthorsFirstName());
         return book;
     }
 

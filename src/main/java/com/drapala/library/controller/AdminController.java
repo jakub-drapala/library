@@ -46,9 +46,11 @@ public class AdminController {
         return repository.findBookById(id);
     }
 
+
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping("/books/{bookId}")
     public String deleteBook(@PathVariable(value = "bookId") Long id) {
-        String name = repository.findBookById(id).getName();
+        String name = repository.findBookById(id).getAuthorsFirstName();
         repository.deleteById(id);
         return name + " has been removed";
     }
