@@ -1,6 +1,7 @@
 package com.drapala.library.controller;
 
 import com.drapala.library.repository.BookRepository;
+import com.drapala.library.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    BookRepository repository;
+    AdminService service;
 
     @GetMapping("/TestPage")
     public String hello() {
@@ -23,36 +24,39 @@ public class AdminController {
 
     @GetMapping("/books")
     public List getBooks() {
-        return repository.getAllBooks();
+        return service.getAllBooks();
     }
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/books")
     public Book addBook(@RequestBody Book book) {
-        repository.addBook(book);
+        return service.addBook(book);
 
-        return book;//"redirect:/library/MainPage";
+
     }
 
     @GetMapping("/books/{bookId}")
     public Book showSingleBook(@PathVariable(value = "bookId") Long id) {
-        return repository.findBookById(id);
+        return service.getSingleBook(id);
     }
 
     @PutMapping("/books/{bookId}")
     public Book updateBook(@PathVariable(value = "bookId") Long id ,@RequestBody Book book) {
-        repository.editBook(id, book);
+        return service.updateBook(id, book);
 
-        return repository.findBookById(id);
     }
 
+
+/*    @PutMapping("books/{bookId}/amount")
+    public int changeAmount(@PathVariable(value = "bookId") Long id, @RequestBody int amount) {
+
+        return service.changeBooksAmount(id, amount);
+    }*/
 
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping("/books/{bookId}")
     public String deleteBook(@PathVariable(value = "bookId") Long id) {
-        String name = repository.findBookById(id).getAuthorsFirstName();
-        repository.deleteById(id);
-        return name + " has been removed";
+        return service.deleteBook(id);
     }
 
 
