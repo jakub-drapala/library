@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 @Slf4j
 @Data
 @Entity
-@Transactional
 public class Book {
 
     @Id
@@ -51,10 +50,19 @@ public class Book {
         this.price = price;
     }
 
+    public Book(long id, String authorsFirstName, String authorsLastName, String title, int publicationsYear, double price) {
+        this.id = id;
+        this.authorsFirstName = authorsFirstName;
+        this.authorsLastName = authorsLastName;
+        this.title = title;
+        this.publicationsYear = publicationsYear;
+        this.price = price;
+    }
+
     protected Book() {
     }
 
-/*    public void adjustStock (int quantity) {
+    public void adjustStock (int quantity) {
         int newQuantity = this.quantityInStock + quantity;
 
         log.info("New quantity {}", newQuantity);
@@ -63,7 +71,7 @@ public class Book {
             this.quantityInStock = newQuantity;
             log.info("Quantity in stock {}", this.quantityInStock);
         }
-    }*/
+    }
 
 }
 

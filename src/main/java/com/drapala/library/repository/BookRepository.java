@@ -37,15 +37,23 @@ public class BookRepository {
 
 
     public Book editBook(Long id, Book book) {
-        Book beforeUpdating = findBookById(id);
-        beforeUpdating.setAuthorsFirstName(book.getAuthorsFirstName());
-        return book;
+        Book bookWithUpdatedData = new Book(id, book.getAuthorsFirstName(), book.getAuthorsLastName(),
+                book.getTitle(), book.getPublicationsYear(), book.getPrice());
+        em.merge(bookWithUpdatedData);
+        return bookWithUpdatedData;
     }
 
     public void deleteById(Long id) {
         Book toDelete = findBookById(id);
         em.remove(toDelete);
     }
+
+/*
+    public void changeAmount(int quantity) {
+        em.
+
+    }
+*/
 
 
 
