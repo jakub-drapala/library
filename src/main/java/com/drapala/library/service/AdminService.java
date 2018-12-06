@@ -39,15 +39,13 @@ public class AdminService {
         return name + " has been removed.";
     }
 
-/*    public int changeBooksAmount(Long id, int quantity) {
-        Book book = getSingleBook(id);
-        if (book != null) {
-            book.adjustStock(quantity);
-            log.info("Quantity book {} has been changed by {} ", book.getTitle(), quantity);
-            return quantity;
-        }
-        return 0;
-    }*/
+
+    public int adjustStock(Long id, int quantity) {
+
+        repository.adjustStock(id, quantity);
+
+        return quantity;
+    }
 
 
 

@@ -48,12 +48,12 @@ public class BookRepository {
         em.remove(toDelete);
     }
 
-/*
-    public void changeAmount(int quantity) {
-        em.
 
+    public void adjustStock(Long id, int quantity) {
+        Book book = findBookById(id);
+        book.adjustStock(quantity);
     }
-*/
+
 
 
 

@@ -47,11 +47,11 @@ public class AdminController {
     }
 
 
-/*    @PutMapping("books/{bookId}/amount")
-    public int changeAmount(@PathVariable(value = "bookId") Long id, @RequestBody int amount) {
+    @PutMapping("books/{bookId}/amount")
+    public int adjustStock(@PathVariable(value = "bookId") Long id, @RequestBody int amount) {
 
-        return service.changeBooksAmount(id, amount);
-    }*/
+        return service.adjustStock(id, amount);
+    }
 
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping("/books/{bookId}")
