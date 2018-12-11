@@ -23,11 +23,9 @@ public class BookRepository {
     }
 
     public Book findBookById(Long id) {
-        Query query = em.createQuery("Select b from Book b where id = :id")
-                .setParameter("id", id);
-        Book book = (Book) query.getSingleResult();
-        return book;
+        return em.find(Book.class, id);
     }
+
 
     public List getAllBooks() {
         Query query = em.createQuery("Select b from Book b");
