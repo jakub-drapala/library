@@ -88,7 +88,7 @@ public class BookRepositoryTests {
 		assertEquals(changedData.getPrice(), repository.findBookById(id).getPrice(), 0);
 	}
 
-	@Test
+/*	@Test
 	public void deleteById() {
 		Query query = em.createQuery("SELECT COUNT(*) FROM Book");
 		Long startAmount = (Long) query.getSingleResult();
@@ -102,7 +102,22 @@ public class BookRepositoryTests {
 		Long endAmount = (Long) query.getSingleResult();
 
 		assertEquals((long)startAmount-1L, (long) endAmount);
+	}*/
+
+	@Test
+	public void deleteById() {
+		Query query = em.createQuery("SELECT id FROM Book WHERE title = 'Pan Tadeusz' ");
+		long id = (Long) query.getSingleResult();
+
+		assertNotNull(repository.findBookById(id));
+
+		repository.deleteById(id);
+
+		assertNull(repository.findBookById(id));
+
 	}
+
+
 
 	@Test
 	public void adjustStock() {
